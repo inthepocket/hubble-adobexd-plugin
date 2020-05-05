@@ -24,7 +24,6 @@ async function exportAssets(_selection, documentRoot) {
   const folder = await fs.getFolder();
   if (!folder) return;
 
-
   /**
    * Run sequential because application.createRenditions is not concurrent
    * so we have to wait until the previous has resolved before starting a new one
@@ -35,6 +34,7 @@ async function exportAssets(_selection, documentRoot) {
     const folderWithFile = await createDirectoryPath(folder, path);
     const renderFile = await folderWithFile.createFile(`${path.pop()}.png`, { overwrite: true });
 
+    // TODO: check which output formats are necessary
     const renditionOptions = [
       {
         node: asset,
@@ -43,6 +43,7 @@ async function exportAssets(_selection, documentRoot) {
         scale: 2
       }
     ];
+
     try {
       await application.createRenditions(renditionOptions);
     } catch (err) {
