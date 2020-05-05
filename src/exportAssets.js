@@ -36,7 +36,6 @@ async function exportAssets(_selection, documentRoot) {
       const renderFilePNG = await folderWithFile.createFile(`${fileName}@${scale}x.png`, { overwrite: true });
       const renderFileSVG = await folderWithFile.createFile(`${fileName}@${scale}x.svg`, { overwrite: true });
 
-      // TODO: check which output formats are necessary
       const renditionOptions = [
         {
           node: asset,
