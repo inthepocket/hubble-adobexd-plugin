@@ -33,27 +33,27 @@ async function exportAssets(_selection, documentRoot) {
     const fileName = path.pop();
 
     for (const scale of [1, 2, 3]) {
-      const renderFilePNG = await folderWithFile.createFile(`${fileName}@${scale}x.png`, { overwrite: true });
-      const renderFileSVG = await folderWithFile.createFile(`${fileName}@${scale}x.svg`, { overwrite: true });
-
-      const renditionOptions = [
-        {
-          node: asset,
-          outputFile: renderFilePNG,
-          type: application.RenditionType.PNG,
-          scale: scale
-        },
-        {
-          node: asset,
-          outputFile: renderFileSVG,
-          type: application.RenditionType.SVG,
-          scale: scale,
-          minify: true,
-          embedImages: true,
-        }
-      ];
-  
       try {
+        const renderFilePNG = await folderWithFile.createFile(`${fileName}@${scale}x.png`, { overwrite: true });
+        const renderFileSVG = await folderWithFile.createFile(`${fileName}@${scale}x.svg`, { overwrite: true });
+
+        const renditionOptions = [
+          {
+            node: asset,
+            outputFile: renderFilePNG,
+            type: application.RenditionType.PNG,
+            scale: scale
+          },
+          {
+            node: asset,
+            outputFile: renderFileSVG,
+            type: application.RenditionType.SVG,
+            scale: scale,
+            minify: true,
+            embedImages: true,
+          }
+        ];
+  
         await application.createRenditions(renditionOptions);
       } catch (err) {
         return console.log(err);
