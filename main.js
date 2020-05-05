@@ -3,7 +3,7 @@ const exportAssets = require('./src/exportAssets');
 
 module.exports = {
     commands: {
-        exportToHubble: exportToHubble,
-        exportAssets: exportAssets,
+        exportToHubble,
+        exportAssets,
     },
 };

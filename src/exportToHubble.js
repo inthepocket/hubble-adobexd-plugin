@@ -1,5 +1,5 @@
 const fs = require('uxp').storage.localFileSystem;
-const shell = require('uxp').shell;
+const { shell } = require('uxp');
 
 const CANCELLED = 'reasonCanceled';
 
@@ -50,8 +50,8 @@ function showDialog(defaultInput = '') {
 
     const okButton = document.getElementById('ok');
     okButton.addEventListener('click', e => {
-        dialog.close(document.getElementById('url').value);
         e.preventDefault();
+        dialog.close(document.getElementById('url').value);
     });
 
     return dialog.showModal();
@@ -63,7 +63,7 @@ async function exportToHubble() {
     const filePath = file.nativePath;
 
     const folder = await fs.getDataFolder();
-    let urlFile = null;
+    let urlFile;
     try {
         urlFile = await folder.getEntry('cloudurl.txt');
     } catch (err) {
