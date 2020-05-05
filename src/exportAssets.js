@@ -17,8 +17,6 @@ async function createDirectoryPath(topLevel, path) {
 }
 
 async function exportAssets(_selection, documentRoot) {
-  // TODO: confirm if marked_for export is enough or if every icon/illustration should be exported
-  //const assets = documentRoot.children.filter(artboard => artboard.name.startsWith('icons') || artboard.name.startsWith('illustrations'));
   const assets = documentRoot.children.filter(artboard => artboard.markedForExport);
 
   const folder = await fs.getFolder();
@@ -32,22 +30,26 @@ async function exportAssets(_selection, documentRoot) {
     const path = asset.name.split('/');
 
     const folderWithFile = await createDirectoryPath(folder, path);
-    const renderFile = await folderWithFile.createFile(`${path.pop()}.png`, { overwrite: true });
+    const fileName = path.pop();
 
-    // TODO: check which output formats are necessary
-    const renditionOptions = [
-      {
-        node: asset,
-        outputFile: renderFile,
-        type: application.RenditionType.PNG,
-        scale: 2
+    for (const scale of [1, 2, 3]) {
+      const renderFile = await folderWithFile.createFile(`${fileName}@${scale}x.png`, { overwrite: true });
+
+      // TODO: check which output formats are necessary
+      const renditionOptions = [
+        {
+          node: asset,
+          outputFile: renderFile,
+          type: application.RenditionType.PNG,
+          scale: scale
+        },
+      ];
+  
+      try {
+        await application.createRenditions(renditionOptions);
+      } catch (err) {
+        return console.log(err);
       }
-    ];
-
-    try {
-      await application.createRenditions(renditionOptions);
-    } catch (err) {
-      return console.log(err);
     }
   }
 }
