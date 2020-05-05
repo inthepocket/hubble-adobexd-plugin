@@ -1,0 +1,33 @@
+{
+  "name": "hubble",
+  "host": {
+    "app": "XD",
+    "minVersion": "21.0"
+  },
+  "id" : "6d286a66",
+  "icons": [
+    {
+      "path": "images/icon@1x.png",
+      "width": 24,
+      "height": 24
+    }, 
+    {
+      "path": "images/icon@2x.png",
+      "width": 48,
+      "height": 48
+    }
+  ],
+  "uiEntryPoints": [ 
+    {
+      "label": "Export project to Hubble",
+      "type": "menu",
+      "commandId": "exportToHubble"
+    },
+    {
+      "label": "Export assets",
+      "type": "menu",
+      "commandId": "exportAssets"
+    }
+  ],
+  "version": "0.0.1"
+}
