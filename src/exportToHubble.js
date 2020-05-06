@@ -74,7 +74,7 @@ async function exportToHubble() {
     const defaultInput = await urlFile.read();
     const url = await showDialog(defaultInput);
 
-    if (url != CANCELLED) {
+    if (url !== CANCELLED) {
         await urlFile.write(url);
         shell.openExternal(`${url}?filePath=${filePath}&app=ADOBEXD`);
     }

@@ -32,10 +32,11 @@ async function exportAssets(_selection, documentRoot) {
     const folderWithFile = await createDirectoryPath(folder, path);
     const fileName = path.pop();
 
-    for (const scale of [1, 2, 3]) {
-      try {
+    try {
+      const renderFileSVG = await folderWithFile.createFile(`${fileName}.svg`, { overwrite: true });
+
+      for (const scale of [1, 2, 3]) {
         const renderFilePNG = await folderWithFile.createFile(`${fileName}@${scale}x.png`, { overwrite: true });
-        const renderFileSVG = await folderWithFile.createFile(`${fileName}@${scale}x.svg`, { overwrite: true });
 
         const renditionOptions = [
           {
@@ -44,20 +45,23 @@ async function exportAssets(_selection, documentRoot) {
             type: application.RenditionType.PNG,
             scale: scale
           },
-          {
+        ];
+
+        if (scale === 1) {
+          renditionOptions.push({
             node: asset,
             outputFile: renderFileSVG,
             type: application.RenditionType.SVG,
             scale: scale,
             minify: true,
             embedImages: true,
-          }
-        ];
+          });
+        }
   
         await application.createRenditions(renditionOptions);
-      } catch (err) {
-        return console.log(err);
       }
+    } catch (err) {
+      return console.log(err);
     }
   }
 }
