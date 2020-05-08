@@ -1,5 +1,8 @@
 # Hubble plugin for Adobe XD
 
+[![LICENSE](https://badgen.net/badge/license/MIT/blue)][license]
+![Last commit](https://badgen.net/github/last-commit/inthepocket/hubble-adobexd-plugin)
+
 Takes your design data out of Adobe XD and connects it to the Hubble atmosphere.
 
 # Contents
@@ -52,4 +55,8 @@ E.g. `cd /Users/robbedec/Library/Application Support/Adobe/Adobe XD/develop && g
 
 ## License
 
-TODO
+[MIT][license]
+
+<!-- LINKS -->
+
+[license]: https://github.com/inthepocket/hubble-adobexd-plugin/blob/master/LICENSE
