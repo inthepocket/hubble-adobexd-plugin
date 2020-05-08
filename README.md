@@ -45,7 +45,7 @@ Adobe XD has a predefined folder to store plugins in development mode. To open t
 
 Now simply copy or clone the repository to the development folder. Changes are visible after reloading the plugins (Cmd+Shift+R).
 
-For example: `git clone https://github.com/inthepocket/hubble-adobexd-plugin "~/Library/Application Support/Adobe/Adobe XD/develop"`.
+For example: `git clone https://github.com/inthepocket/hubble-adobexd-plugin "~/Library/Application Support/Adobe/Adobe XD/develop"`
 
 ## License
 
